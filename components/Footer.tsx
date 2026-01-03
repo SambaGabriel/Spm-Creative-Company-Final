@@ -10,8 +10,8 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="flex flex-wrap justify-center gap-8">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors border-b border-transparent hover:border-white pb-1">Instagram</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors border-b border-transparent hover:border-white pb-1">LinkedIn</a>
+            <a href="https://www.instagram.com/spm_usa" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors border-b border-transparent hover:border-white pb-1">Instagram</a>
+            <a href="https://www.linkedin.com/company/spm-creative-company-usa" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors border-b border-transparent hover:border-white pb-1">LinkedIn</a>
             <a href="https://vimeo.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors border-b border-transparent hover:border-white pb-1">Vimeo</a>
             <a href="mailto:contact@spmcreativecompany.com" className="hover:text-white transition-colors border-b border-transparent hover:border-white pb-1">Inquiries</a>
         </div>
