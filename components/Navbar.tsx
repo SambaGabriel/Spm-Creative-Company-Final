@@ -26,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
     const element = document.getElementById(targetId);
     
     if (element) {
-      const offset = 100; // Compensação para o header fixo
+      const offset = 80; // Compensação ajustada para o header fixo reduzido
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -62,7 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
         {/* Navigation & Global Metrics Group - Right */}
         <div className="flex items-center space-x-6 md:space-x-10">
           
-          {/* World Clocks & Status - Reposicionados para a Direita */}
+          {/* World Clocks & Status */}
           <div className="hidden xl:block pr-8 border-r border-white/10">
             <WorldClocks />
           </div>

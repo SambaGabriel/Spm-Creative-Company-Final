@@ -27,7 +27,6 @@ export const Hero: React.FC = () => {
         video.addEventListener('canplay', playVideo);
       }
 
-      // Lógica para desaparecer após 2 segundos (3s total considerando 1s de animação inicial)
       const timer = setTimeout(() => {
         setIsVisible(false);
       }, 3000);
@@ -43,7 +42,7 @@ export const Hero: React.FC = () => {
     e.preventDefault();
     const element = document.getElementById('manifesto');
     if (element) {
-      const offset = 100;
+      const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -80,7 +79,7 @@ export const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] opacity-60" />
       </div>
 
-      {/* Content Layer - Typography with Auto-Fade */}
+      {/* Content Layer */}
       <div className={`relative z-10 flex flex-col items-center px-6 text-center transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-[900] tracking-[-0.06em] text-white uppercase leading-none animate-in fade-in slide-in-from-bottom-12 duration-1000">
           Miami <span className="text-white/10 mx-[-0.05em] block sm:inline">/</span> São Paulo

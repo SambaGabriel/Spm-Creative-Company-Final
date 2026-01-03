@@ -31,7 +31,7 @@ export const Portfolio: React.FC = () => {
             <p className="text-neutral-500 font-mono text-[10px] tracking-[0.4em] uppercase mt-4">Curation & Global Presence</p>
           </div>
           <div className="flex gap-4">
-             <span className="text-[9px] font-mono text-white/20 uppercase tracking-widest border border-white/10 px-3 py-1">2019 — 2025</span>
+             <span className="text-[9px] font-mono text-white/20 uppercase tracking-widest border border-white/10 px-3 py-1">2019 — 2026</span>
              <span className="text-[9px] font-mono text-white/20 uppercase tracking-widest border border-white/10 px-3 py-1">HQ: MIA / HUB: SAO</span>
           </div>
         </div>
