@@ -30,9 +30,9 @@ export const Infrastructure: React.FC = () => {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
       
       <div className="max-w-[94%] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
-          <div className="lg:col-span-4 lg:sticky lg:top-32">
+          <div className="lg:col-span-4 lg:sticky lg:top-32 mb-8 lg:mb-0">
             <div className="flex items-center gap-3 mb-6">
                <Activity className="text-white w-4 h-4 animate-pulse" />
                <span className="text-[9px] font-mono tracking-[0.3em] text-white/40 uppercase">System Integrity: Nominal</span>
@@ -41,7 +41,7 @@ export const Infrastructure: React.FC = () => {
               Infrastructure
             </h3>
             <p className="text-neutral-600 text-sm font-light max-w-xs leading-relaxed">
-              Proprietary infrastructure engineered for high-performance creative execution across borders.
+              Proprietary infrastructure engineered for high-performance creative execution across borders. Matriz global do grupo SPM Music Group Brasil.
             </p>
           </div>
 
@@ -66,7 +66,7 @@ export const Infrastructure: React.FC = () => {
               ))}
             </div>
             
-            <div className="mt-8 p-6 bg-white/[0.02] border border-white/5 font-mono text-[8px] text-neutral-700 uppercase tracking-[0.4em] flex justify-between items-center">
+            <div className="mt-8 p-6 bg-white/[0.02] border border-white/5 font-mono text-[8px] text-neutral-700 uppercase tracking-[0.4em] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <span>Network Latency: 42ms (MIA-SAO-DIRECT)</span>
                 <span className="hidden md:block">Security Protocol: SPM_SEC_V3</span>
                 <span className="animate-pulse">Active Sync...</span>

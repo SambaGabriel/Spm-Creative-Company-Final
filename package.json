@@ -4,7 +4,8 @@
   "description": "Website oficial da SPM Creative Company USA LLC - Filial Miami",
   "main": "index.tsx",
   "scripts": {
-    "start": "serve"
+    "start": "serve",
+    "build": "echo 'No build step required for static ESM deployment' && mkdir -p dist && cp index.html dist/index.html || true"
   },
   "keywords": [
     "production",
