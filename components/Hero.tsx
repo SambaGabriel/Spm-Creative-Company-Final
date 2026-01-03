@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
       video.play().catch(e => console.log("Video autoplay blocked or error:", e));
     }
 
-    // Lógica para desaparecer após 1.5 segundos
+    // Lógica rigorosa para desaparecer após 1.5 segundos
     const timer = setTimeout(() => {
       setIsVisible(false);
     }, 1500);
