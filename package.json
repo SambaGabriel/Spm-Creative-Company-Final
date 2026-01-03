@@ -5,7 +5,7 @@
   "main": "index.tsx",
   "scripts": {
     "start": "serve",
-    "build": "echo 'Building static assets...'"
+    "build": "echo 'Static deployment ready.'"
   },
   "keywords": [
     "production",
@@ -17,9 +17,9 @@
   "author": "Gabriel Arevalo",
   "license": "UNLICENSED",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "lucide-react": "^0.263.1",
-    "tailwindcss": "^3.3.3"
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "lucide-react": "^0.474.0",
+    "tailwindcss": "^3.4.1"
   }
 }
