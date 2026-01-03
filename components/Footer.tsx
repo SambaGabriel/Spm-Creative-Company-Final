@@ -5,7 +5,7 @@ export const Footer: React.FC = () => {
     <footer className="py-12 bg-black text-center border-t border-neutral-900">
       <div className="max-w-[94%] mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-[10px] font-mono tracking-widest text-neutral-600 uppercase">
         <div className="flex flex-col md:items-start space-y-2 mb-8 md:mb-0">
-          <p>&copy; {new Date().getFullYear()} SPM Creative Company USA LLC.</p>
+          <p>&copy; 2026 SPM Creative Company USA LLC.</p>
           <p className="text-neutral-800">Global Production Matrix // All rights reserved.</p>
         </div>
         

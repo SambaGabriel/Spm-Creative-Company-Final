@@ -6,36 +6,20 @@ export const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    // Inicia o vídeo
     const video = videoRef.current;
     if (video) {
       video.muted = true;
-      video.defaultMuted = true;
       video.playsInline = true;
-      
-      const playVideo = () => {
-        const promise = video.play();
-        if (promise !== undefined) {
-          promise.catch(() => {
-            console.log("Waiting for user interaction to play video.");
-          });
-        }
-      };
-
-      if (video.readyState >= 3) {
-        playVideo();
-      } else {
-        video.addEventListener('canplay', playVideo);
-      }
-
-      const timer = setTimeout(() => {
-        setIsVisible(false);
-      }, 3000);
-
-      return () => {
-        video.removeEventListener('canplay', playVideo);
-        clearTimeout(timer);
-      };
+      video.play().catch(e => console.log("Video autoplay blocked or error:", e));
     }
+
+    // Lógica para desaparecer após 1.5 segundos
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const scrollToManifesto = (e: React.MouseEvent) => {
@@ -65,22 +49,17 @@ export const Hero: React.FC = () => {
           muted 
           loop 
           playsInline
-          className="w-full h-full object-cover grayscale brightness-[0.35] contrast-[1.15]"
-          poster="https://images.unsplash.com/photo-1514525253344-f814d8745485?q=80&w=1974&auto=format&fit=crop"
+          className="w-full h-full object-cover grayscale brightness-[0.3] contrast-[1.2]"
         >
-          <source src="showreel.mp4" type="video/mp4" />
-          <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center">
-            <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
-          </div>
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-concert-stage-with-lights-and-smoke-40176-large.mp4" type="video/mp4" />
         </video>
         
         <div className="absolute inset-0 bg-black/40 mix-blend-multiply pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black opacity-90 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] opacity-60" />
       </div>
 
       {/* Content Layer */}
-      <div className={`relative z-10 flex flex-col items-center px-6 text-center transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`relative z-10 flex flex-col items-center px-6 text-center transition-all duration-1000 ease-in-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
         <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-[900] tracking-[-0.06em] text-white uppercase leading-none animate-in fade-in slide-in-from-bottom-12 duration-1000">
           Miami <span className="text-white/10 mx-[-0.05em] block sm:inline">/</span> São Paulo
         </h1>

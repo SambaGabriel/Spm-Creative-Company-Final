@@ -17,7 +17,7 @@ export const Manifesto: React.FC = () => {
           <div className="lg:col-span-4 flex flex-col justify-end pb-4">
              <div className="w-12 h-px bg-white/20 mb-6"></div>
              <p className="text-[10px] font-mono tracking-[0.3em] text-neutral-500 uppercase">
-                EST. 2019 / MIAMI - SÃO PAULO
+                EST. 2019 — 2026 / MIAMI - SÃO PAULO
              </p>
           </div>
 
