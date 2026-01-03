@@ -5,7 +5,7 @@
   "main": "index.tsx",
   "scripts": {
     "start": "serve",
-    "build": "echo 'No build step required for static ESM deployment' && mkdir -p dist && cp index.html dist/index.html || true"
+    "build": "echo 'Building static assets...'"
   },
   "keywords": [
     "production",
