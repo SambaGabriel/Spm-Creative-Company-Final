@@ -5,7 +5,7 @@
   "main": "index.tsx",
   "scripts": {
     "start": "serve",
-    "build": "echo 'Static build successful'"
+    "build": "echo 'Static build successful. Deploying Matrix...'"
   },
   "keywords": [
     "production",

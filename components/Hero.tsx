@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { ArrowDown, Play, Volume2 } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -27,17 +27,17 @@ export const Hero: React.FC = () => {
         video.addEventListener('canplay', playVideo);
       }
 
-      return () => video.removeEventListener('canplay', playVideo);
+      // Lógica para desaparecer após 2 segundos (3s total considerando 1s de animação inicial)
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 3000);
+
+      return () => {
+        video.removeEventListener('canplay', playVideo);
+        clearTimeout(timer);
+      };
     }
   }, []);
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      const newMutedState = !videoRef.current.muted;
-      videoRef.current.muted = newMutedState;
-      setIsMuted(newMutedState);
-    }
-  };
 
   const scrollToManifesto = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -66,58 +66,32 @@ export const Hero: React.FC = () => {
           muted 
           loop 
           playsInline
-          className="w-full h-full object-cover grayscale brightness-[0.4] contrast-[1.1]"
+          className="w-full h-full object-cover grayscale brightness-[0.35] contrast-[1.15]"
+          poster="https://images.unsplash.com/photo-1514525253344-f814d8745485?q=80&w=1974&auto=format&fit=crop"
         >
           <source src="showreel.mp4" type="video/mp4" />
-          <div className="w-full h-full bg-neutral-900"></div>
+          <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center">
+            <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
+          </div>
         </video>
         
-        <div className="absolute inset-0 bg-black/20 mix-blend-overlay pointer-events-none" />
+        <div className="absolute inset-0 bg-black/40 mix-blend-multiply pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black opacity-90 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] opacity-60" />
       </div>
 
-      {/* Technical Metadata UI */}
-      <div className="absolute top-32 left-8 md:left-12 z-20 hidden md:block">
-        <div className="flex flex-col gap-1 font-mono text-[8px] tracking-[0.2em] text-white/30 uppercase">
-          <p>Format: 4K DCI LOG</p>
-          <p>FPS: 23.976</p>
-          <p>Color: SPM_LUT_V4</p>
-        </div>
-      </div>
-
-      <div className="absolute top-32 right-8 md:right-12 z-20">
-        <div className="flex items-center gap-3">
-            <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></div>
-            <span className="font-mono text-[9px] tracking-[0.3em] text-white uppercase">Showreel 2025 // ON AIR</span>
-        </div>
-      </div>
-
-      {/* Content Layer */}
-      <div className="relative z-10 flex flex-col items-center">
-        <button 
-          onClick={toggleMute}
-          className="group flex flex-col items-center focus:outline-none"
-          aria-label={isMuted ? "Unmute showreel" : "Mute showreel"}
-        >
-            <div className="w-16 h-16 md:w-20 md:h-20 border border-white/20 rounded-full flex items-center justify-center mb-8 group-hover:bg-white group-hover:border-white transition-all duration-700">
-                {isMuted ? (
-                  <Play className="text-white group-hover:text-black transition-colors ml-1" size={24} fill="currentColor" />
-                ) : (
-                  <Volume2 className="text-white group-hover:text-black transition-colors" size={24} />
-                )}
-            </div>
-            <div className="flex items-center justify-center gap-4 sm:gap-8 text-[9px] md:text-xs font-bold tracking-[0.6em] text-gray-400 uppercase">
-              <span className="hover:text-white transition-colors">Miami</span>
-              <span className="w-1 h-1 bg-white/30 rounded-full"></span>
-              <span className="hover:text-white transition-colors">São Paulo</span>
-            </div>
-        </button>
+      {/* Content Layer - Typography with Auto-Fade */}
+      <div className={`relative z-10 flex flex-col items-center px-6 text-center transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-[900] tracking-[-0.06em] text-white uppercase leading-none animate-in fade-in slide-in-from-bottom-12 duration-1000">
+          Miami <span className="text-white/10 mx-[-0.05em] block sm:inline">/</span> São Paulo
+        </h1>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-30 group cursor-pointer hover:opacity-100 transition-opacity">
-        <a href="#manifesto" onClick={scrollToManifesto} aria-label="Scroll down">
-          <ArrowDown className="text-white" size={28} strokeWidth={1} />
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30 hover:opacity-100 transition-opacity duration-700 cursor-pointer">
+        <a href="#manifesto" onClick={scrollToManifesto} className="flex flex-col items-center gap-2 group" aria-label="Explore the Vision">
+          <span className="text-[8px] font-mono tracking-[0.5em] uppercase text-white/50 group-hover:text-white transition-colors">Discover</span>
+          <ArrowDown className="text-white animate-bounce" size={20} strokeWidth={1} />
         </a>
       </div>
     </section>
