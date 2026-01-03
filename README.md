@@ -3,21 +3,21 @@
 **Global Production Company & Creative Ecosystem**
 *Miami • São Paulo*
 
-Website oficial da filial norte-americana do SPM Music Group Brasil.
+Official website of the North American branch of SPM Music Group Brazil.
 
-## Sobre
-A SPM Creative Company USA consolida a expansão internacional da empresa, combinando música, imagem e estratégia.
+## About
+SPM Creative Company USA consolidates the company's international expansion, combining music, image, and strategy.
 
-### Sócios
-* **Gabriel Arevalo:** Fundador e Diretor Musical
-* **Maestro Caixote:** Maestro e Arranjador
-* **João Paulo Faria:** Sócio e Diretor Audiovisual
+### Partners
+* **Gabriel Arevalo:** Founder & Musical Director
+* **Maestro Caixote:** Maestro & Arranger
+* **João Paulo Faria:** Partner & Audiovisual Director
 
-## Tecnologias
+## Technologies
 * React
 * Tailwind CSS
 * Lucide Icons
 
-## Como rodar
-Este é um projeto estático moderno. Para visualizar:
-1. Abra o `index.html` em um servidor local (Live Server).
+## How to run
+This is a modern static project. To view:
+1. Open `index.html` in a local server (Live Server).

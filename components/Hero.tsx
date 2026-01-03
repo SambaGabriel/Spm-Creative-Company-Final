@@ -6,7 +6,6 @@ export const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Inicia o vídeo
     const video = videoRef.current;
     if (video) {
       video.muted = true;
@@ -14,10 +13,10 @@ export const Hero: React.FC = () => {
       video.play().catch(e => console.log("Video autoplay blocked or error:", e));
     }
 
-    // Lógica rigorosa para desaparecer após 1.5 segundos
+    // O fade-in leva 1000ms. Para ficar visível por 1500ms, o timer total é 2500ms.
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 1500);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -60,7 +59,7 @@ export const Hero: React.FC = () => {
 
       {/* Content Layer */}
       <div className={`relative z-10 flex flex-col items-center px-6 text-center transition-all duration-1000 ease-in-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-[900] tracking-[-0.06em] text-white uppercase leading-none animate-in fade-in slide-in-from-bottom-12 duration-1000">
+        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-[900] tracking-[-0.06em] text-white uppercase leading-none animate-in fade-in slide-in-from-bottom-12">
           Miami <span className="text-white/10 mx-[-0.05em] block sm:inline">/</span> São Paulo
         </h1>
       </div>

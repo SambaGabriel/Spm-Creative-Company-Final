@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Database, Waves, Cpu, Eye, Activity } from 'lucide-react';
 
 export const Infrastructure: React.FC = () => {
@@ -41,7 +41,7 @@ export const Infrastructure: React.FC = () => {
               Infrastructure
             </h3>
             <p className="text-neutral-600 text-sm font-light max-w-xs leading-relaxed">
-              Proprietary infrastructure engineered for high-performance creative execution across borders. Matriz global do grupo SPM Music Group Brasil.
+              Proprietary infrastructure engineered for high-performance creative execution across borders. Global headquarters of SPM Music Group Brazil.
             </p>
           </div>
 

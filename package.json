@@ -1,7 +1,7 @@
 {
   "name": "spm-creative-company-usa",
   "version": "1.0.0",
-  "description": "Website oficial da SPM Creative Company USA LLC - Filial Miami",
+  "description": "Official website of SPM Creative Company USA LLC - Miami Branch",
   "type": "module",
   "scripts": {
     "dev": "vite",
