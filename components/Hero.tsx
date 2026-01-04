@@ -3,29 +3,27 @@ import { ArrowDown } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVisible, setIsVisible] = useState(true);
+  const [showTitles, setShowTitles] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      video.muted = true;
-      video.playsInline = true;
-      video.play().catch(e => console.log("Video autoplay blocked or error:", e));
+      video.play().catch(() => {});
     }
 
-    // O fade-in leva 1000ms. Para ficar visível por 1500ms, o timer total é 2500ms.
+    // Timer para o fade out:
+    // 1000ms (entrada da animação) + 2000ms (tempo visível) = 3000ms total antes de iniciar o sumiço
     const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, 2500);
+      setShowTitles(false);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  const scrollToManifesto = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const scrollToManifesto = () => {
     const element = document.getElementById('manifesto');
     if (element) {
-      const offset = 80;
+      const offset = 0;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -39,8 +37,8 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black">
-      {/* Video Layer */}
+    <section id="home" className="relative h-screen w-full overflow-hidden bg-black flex flex-col justify-end pb-12 md:pb-24">
+      {/* Background Video Layer */}
       <div className="absolute inset-0 z-0">
         <video 
           ref={videoRef}
@@ -48,28 +46,52 @@ export const Hero: React.FC = () => {
           muted 
           loop 
           playsInline
-          className="w-full h-full object-cover grayscale brightness-[0.3] contrast-[1.2]"
+          className="w-full h-full object-cover opacity-40 grayscale contrast-[1.2]"
         >
           <source src="https://assets.mixkit.co/videos/preview/mixkit-concert-stage-with-lights-and-smoke-40176-large.mp4" type="video/mp4" />
         </video>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
+      </div>
+
+      {/* Content Layer - Brutalist & Bottom Aligned */}
+      <div className="relative z-10 w-full max-w-[96%] mx-auto px-2 md:px-6">
         
-        <div className="absolute inset-0 bg-black/40 mix-blend-multiply pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black opacity-90 pointer-events-none" />
-      </div>
+        {/* Top Meta Info */}
+        <div className="absolute top-[-70vh] right-0 flex flex-col items-end text-right hidden md:flex mix-blend-difference">
+           <span className="text-xs font-mono tracking-widest text-white uppercase mb-2">Est. 2019</span>
+           <span className="text-xs font-mono tracking-widest text-white uppercase">Global HQ</span>
+        </div>
 
-      {/* Content Layer */}
-      <div className={`relative z-10 flex flex-col items-center px-6 text-center transition-all duration-1000 ease-in-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-[900] tracking-[-0.06em] text-white uppercase leading-none animate-in fade-in slide-in-from-bottom-12">
-          Miami <span className="text-white/10 mx-[-0.05em] block sm:inline">/</span> São Paulo
-        </h1>
-      </div>
+        {/* Main Typography */}
+        <div className="pt-8 md:pt-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+            
+            <div className={`lg:col-span-8 transition-opacity duration-1000 ease-in-out ${showTitles ? 'opacity-100' : 'opacity-0'}`}>
+              <h1 className="text-[13vw] leading-[0.8] font-black tracking-tighter text-white uppercase mix-blend-overlay animate-in slide-in-from-bottom-10 fade-in duration-1000">
+                Miami
+              </h1>
+              <h1 className="text-[13vw] leading-[0.8] font-black tracking-tighter text-transparent stroke-white stroke-2 md:stroke-[3px] uppercase ml-[4vw] opacity-80 animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-150" style={{ WebkitTextStroke: '2px white' }}>
+                São Paulo
+              </h1>
+            </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30 hover:opacity-100 transition-opacity duration-700 cursor-pointer">
-        <a href="#manifesto" onClick={scrollToManifesto} className="flex flex-col items-center gap-2 group" aria-label="Explore the Vision">
-          <span className="text-[8px] font-mono tracking-[0.5em] uppercase text-white/50 group-hover:text-white transition-colors">Discover</span>
-          <ArrowDown className="text-white animate-bounce" size={20} strokeWidth={1} />
-        </a>
+            <div className="lg:col-span-4 flex flex-col justify-end pb-4 pl-2 lg:pl-0 border-l lg:border-l-0 border-white/20 lg:border-none ml-4 lg:ml-0">
+               <p className="text-sm md:text-lg font-light text-neutral-300 max-w-xs leading-relaxed mb-8 animate-in fade-in delay-500 duration-1000">
+                 The intersection of sound, vision, and strategy. A global production powerhouse bridging cultures.
+               </p>
+               
+               <button 
+                onClick={scrollToManifesto}
+                className="group flex items-center gap-4 text-xs font-mono tracking-[0.3em] uppercase text-white hover:text-neutral-400 transition-colors"
+               >
+                 <span className="w-8 h-[1px] bg-white group-hover:w-16 transition-all duration-500"></span>
+                 Scroll to Explore
+               </button>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -2,45 +2,61 @@ import React from 'react';
 
 export const Manifesto: React.FC = () => {
   return (
-    <section id="manifesto" className="relative py-24 md:py-40 bg-black text-white overflow-hidden border-b border-white/5">
-      <div className="max-w-[94%] mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20">
+    <section id="manifesto" className="relative bg-black text-white border-b border-white/10">
+      <div className="max-w-[96%] mx-auto px-2 md:px-6">
+        <div className="flex flex-col lg:flex-row">
           
-          <div className="lg:col-span-8">
-            <h2 className="text-4xl md:text-7xl font-bold tracking-tighter leading-tight mb-8 uppercase">
-              A world vision, <br />
-              materialized <br />
-              <span className="text-neutral-500">through art.</span>
-            </h2>
-          </div>
-
-          <div className="lg:col-span-4 flex flex-col justify-end pb-4">
-             <div className="w-12 h-px bg-white/20 mb-6"></div>
-             <p className="text-[10px] font-mono tracking-[0.3em] text-neutral-500 uppercase">
-                EST. 2019 — 2026 / MIAMI - SÃO PAULO
-             </p>
-          </div>
-
-          <div className="lg:col-span-6 space-y-6">
-            <p className="text-xl md:text-2xl font-light leading-snug text-neutral-300">
-              The union of three trajectories consolidates SPM as an integrated <span className="text-white font-normal underline underline-offset-4 decoration-neutral-700">creative ecosystem</span>. 
-            </p>
-            <p className="text-neutral-500 text-lg leading-relaxed">
-              We combine music, image, and strategy to serve artists, brands, and institutions. 
-              Originally established in 2019 as SPM Music Group Brasil, the company has evolved into its current global headquarters, <strong>SPM Creative Company USA LLC</strong>.
-            </p>
-          </div>
-
-          <div className="lg:col-span-6 flex flex-col justify-between">
-            <p className="text-neutral-500 text-lg leading-relaxed">
-              We are building new bridges between cultures, translating the strength of Brazilian creativity into a sophisticated global language. Based in Miami with operations in São Paulo.
-            </p>
-            <div className="mt-12 p-8 border border-white/10 bg-neutral-900/10">
-               <p className="text-white text-lg font-light tracking-wide">
-                "A global SPM, sophisticated and connected with the essence of culture."
+          {/* Sticky Title Column */}
+          <div className="lg:w-1/2 pt-24 pb-12 lg:py-40 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-between border-r border-white/10 pr-8">
+            <div>
+              <span className="block text-[10px] font-mono text-neutral-500 tracking-[0.4em] uppercase mb-8">
+                01 — The Vision
+              </span>
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] uppercase">
+                An idea of a world <br/>
+                materialized <br/>
+                <span className="text-neutral-600">through music.</span>
+              </h2>
+            </div>
+            <div className="hidden lg:block">
+              <div className="w-full h-[1px] bg-neutral-800 mb-4"></div>
+              <p className="text-[10px] font-mono text-neutral-600 uppercase">
+                SPM Creative Co. &copy; Global
               </p>
             </div>
           </div>
+
+          {/* Scrolling Content Column */}
+          <div className="lg:w-1/2 lg:py-40 pb-24 pl-0 lg:pl-20 flex flex-col justify-center space-y-20">
+            
+            <div className="space-y-8">
+              <p className="text-2xl md:text-4xl font-light leading-tight text-white">
+                We are not just a production company. <br/>
+                <span className="text-neutral-500">We are a creative ecosystem.</span>
+              </p>
+              <p className="text-lg text-neutral-400 leading-relaxed max-w-md">
+                Originally established in 2019 as SPM Music Group Brasil, the company has evolved into its current global headquarters, <strong className="text-white">SPM Creative Company USA LLC</strong>.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div className="w-12 h-1 bg-white"></div>
+              <p className="text-xl md:text-2xl font-light leading-snug text-white">
+                 Building new bridges between cultures, translating the strength of Brazilian creativity into a sophisticated global language.
+              </p>
+              <p className="text-lg text-neutral-400 leading-relaxed max-w-md">
+                 Based in Miami with operations in São Paulo, we combine music, image, and strategy to serve artists, brands, and institutions who dare to lead.
+              </p>
+            </div>
+
+            <div className="p-8 border border-white/10 bg-neutral-900/20 backdrop-blur-sm">
+               <p className="text-sm font-mono text-neutral-300 leading-relaxed uppercase tracking-wider">
+                "A global SPM, sophisticated and connected with the essence of culture."
+              </p>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </section>
