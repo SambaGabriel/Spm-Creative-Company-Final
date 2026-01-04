@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SPM Creative Company | Miami & São Paulo Global Production</title>
-    <meta name="description" content="Global production company combining music, image, and strategy. Global headquarters of the SPM Music Group Brazil.">
+    <meta name="description" content="Official website of SPM Creative Company USA. A global production powerhouse bridging Miami and São Paulo. Strategy, Sound Design, and Cinematic Visuals.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@
         height: 100%;
         pointer-events: none;
         z-index: 9999;
-        opacity: 0.03;
+        opacity: 0.04;
         background-image: url("https://grainy-gradients.vercel.app/noise.svg");
       }
 
@@ -90,6 +90,15 @@
       }
       .animate-float {
         animation: float 10s ease-in-out infinite;
+      }
+
+      /* Subtle zoom for hero video */
+      @keyframes slow-zoom {
+        0% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+      .animate-slow-zoom {
+        animation: slow-zoom 10s ease-out forwards;
       }
 
       ::-webkit-scrollbar { width: 3px; }
