@@ -26,7 +26,15 @@ export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
     const element = document.getElementById(targetId);
     
     if (element) {
-      const offset = 80; // Compensação ajustada para o header fixo reduzido
+      // Offset padrão
+      let offset = 80;
+
+      // Ajuste fino para 'Works' (#work) e 'Artist Vault' (#vault)
+      // Aumenta o espaçamento superior para corrigir o alinhamento visual ao clicar
+      if (targetId === 'work' || targetId === 'vault') {
+        offset = 120;
+      }
+
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
