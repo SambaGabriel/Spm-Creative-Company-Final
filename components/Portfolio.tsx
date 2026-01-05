@@ -29,8 +29,8 @@ export const Portfolio: React.FC = () => {
       <div className="max-w-[96%] mx-auto px-2 md:px-6 relative z-10">
         
         {/* Etapa 1: Selected Clients - Typographic Layout */}
-        <div className="mb-48">
-          <div className="flex flex-col md:flex-row items-baseline justify-between mb-16 border-b border-white/20 pb-4">
+        <div className="mb-40 md:mb-64">
+          <div className="flex flex-col md:flex-row items-baseline justify-between mb-12 md:mb-20 border-b border-white/20 pb-6">
              <h3 className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none">
               Selected Works
              </h3>
@@ -40,11 +40,11 @@ export const Portfolio: React.FC = () => {
           </div>
 
           {/* Layout Texto Justificado (Clients) */}
-          <div className="text-justify leading-[1.1] md:leading-[0.9] tracking-tight mix-blend-screen">
+          <div className="text-justify leading-[1.8] md:leading-[1.4] tracking-tight mix-blend-screen">
             {selectedClients.map((client, i) => (
               <React.Fragment key={i}>
                 <span 
-                  className="inline-block text-2xl md:text-5xl lg:text-[7rem] font-black text-neutral-900 uppercase cursor-crosshair transition-all duration-300 hover:text-white hover:scale-105 hover:z-50 select-none whitespace-nowrap"
+                  className="inline-block text-xl md:text-4xl lg:text-[6rem] font-black text-neutral-900 uppercase cursor-crosshair transition-all duration-300 hover:text-white hover:scale-105 hover:z-50 select-none whitespace-nowrap py-2 md:py-4"
                   style={{ fontStretch: 'condensed' }}
                 >
                   {client}
@@ -55,17 +55,24 @@ export const Portfolio: React.FC = () => {
           </div>
         </div>
 
-        {/* Etapa 2: Artists & Partners - Justified Text Block */}
-        <div className="relative">
-          <div className="absolute -top-12 left-0 text-xs font-mono text-neutral-500 uppercase tracking-widest">
-            Index 02 — Legacy & Partners
+        {/* Etapa 2: Artists & Partners - Justified Text Block (Harmonized) */}
+        <div>
+          {/* Header estruturalmente idêntico ao Index 01 */}
+          <div className="flex flex-col md:flex-row items-baseline justify-between mb-12 md:mb-20 border-b border-white/20 pb-6">
+             <h3 className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none">
+              Legacy & Partners
+             </h3>
+             <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest mt-4 md:mt-0">
+               Index 02 — Artists
+             </span>
           </div>
           
-          <div className="text-justify leading-[1.1] md:leading-[0.9] tracking-tight mix-blend-screen">
+          {/* Bloco de texto idêntico ao Index 01 */}
+          <div className="text-justify leading-[1.8] md:leading-[1.4] tracking-tight mix-blend-screen">
             {artists.map((artist, i) => (
               <React.Fragment key={i}>
                 <span 
-                  className="inline-block text-2xl md:text-5xl lg:text-[5.5rem] font-black text-neutral-900 uppercase cursor-crosshair transition-all duration-300 hover:text-white hover:scale-110 hover:z-50 select-none whitespace-nowrap"
+                  className="inline-block text-xl md:text-4xl lg:text-[6rem] font-black text-neutral-900 uppercase cursor-crosshair transition-all duration-300 hover:text-white hover:scale-105 hover:z-50 select-none whitespace-nowrap py-2 md:py-4"
                   style={{ fontStretch: 'condensed' }}
                 >
                   {artist}
