@@ -74,15 +74,14 @@ export const Hero: React.FC<HeroProps> = ({ startAnimation }) => {
                 Miami
               </h1>
               
-              {/* São Paulo is outlined (Support/Origin) */}
+              {/* Sao Paulo (No Tilde) */}
               <h1 
-                className={`text-[13vw] leading-[0.8] font-black tracking-tighter text-transparent stroke-white stroke-2 md:stroke-[3px] uppercase ml-[4vw] transition-all duration-1000 ease-out delay-300 ${showText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-                style={{ WebkitTextStroke: '2px white' }}
+                className={`text-[13vw] leading-[0.8] font-black tracking-tighter text-white uppercase mix-blend-overlay ml-[4vw] transition-all duration-1000 ease-out delay-300 ${showText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
               >
-                São Paulo
+                Sao Paulo
               </h1>
               
-              {/* 2026 - Future Timeline */}
+              {/* 2026 - Future Timeline (Keeps outline for contrast/hierarchy) */}
               <h1 
                 className={`text-[13vw] leading-[0.8] font-black tracking-tighter text-transparent stroke-white stroke-2 md:stroke-[3px] uppercase ml-[8vw] transition-all duration-1000 ease-out delay-500 ${showText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
                 style={{ WebkitTextStroke: '2px white' }}

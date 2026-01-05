@@ -6,12 +6,13 @@ interface LogoProps {
 
 export const Logo: React.FC<LogoProps> = ({ className = "" }) => {
   return (
-    <div className={`flex items-center gap-5 ${className}`}>
+    <div className={`flex items-center gap-4 ${className}`}>
       {/* Logo Block Wrapper */}
       <div className="relative group z-50">
         {/* Main Logo Text */}
         <div className="flex flex-col cursor-pointer select-none">
-          <h1 className="text-4xl md:text-5xl font-[900] tracking-tighter text-white leading-[0.8]">
+          {/* Kept as requested: 2xl mobile, ~2.2rem desktop */}
+          <h1 className="text-2xl md:text-[2.2rem] font-[900] tracking-tighter text-white leading-[0.8]">
             SPM
           </h1>
         </div>
@@ -35,15 +36,15 @@ export const Logo: React.FC<LogoProps> = ({ className = "" }) => {
         </div>
       </div>
 
-      {/* Vertical Divider - Fixed to pipe (|) by removing rotation */}
-      <div className="hidden sm:block w-[1px] h-8 bg-white/10"></div>
+      {/* Vertical Divider - Fixed to pipe (|) - Kept h-6 */}
+      <div className="hidden sm:block w-[1px] h-6 bg-white/10"></div>
 
-      {/* Creative Company Badge */}
+      {/* Creative Company Badge - Increased from 7px back to 8px (~15% increase) */}
       <div className="hidden sm:flex flex-col justify-center select-none">
-         <span className="text-[9px] font-mono font-bold tracking-[0.3em] text-white uppercase leading-none mb-[3px]">
+         <span className="text-[8px] font-mono font-bold tracking-[0.3em] text-white uppercase leading-none mb-[3px]">
            Creative
          </span>
-        <span className="text-[9px] font-mono tracking-[0.3em] text-neutral-600 uppercase leading-none">
+        <span className="text-[8px] font-mono tracking-[0.3em] text-neutral-600 uppercase leading-none">
           Company
         </span>
       </div>
