@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSonic } from './SonicIdentity';
 
 // Lista de clientes atualizada conforme imagem solicitada (Index 01)
 const selectedClients = [
@@ -8,7 +9,7 @@ const selectedClients = [
   "Porsche", "Red Bull", "Rider", "Samsung", "Track & Field", "Umbro"
 ];
 
-// Lista de artistas (Index 02) - Removidos duplicatas (Microsoft, Budweiser) que foram para Clientes
+// Lista de artistas (Index 02)
 const artists = [
   "Alejandro Sanz", "Alexandre Pires", "Alcione", "Art Popular", "Babado Novo", "Belo", 
   "Bruno & Marrone", "Cauby Peixoto", "Chitãozinho & Xororó", "Demônios da Garoa", 
@@ -24,6 +25,8 @@ const artists = [
 ];
 
 export const Portfolio: React.FC = () => {
+  const { playHover } = useSonic();
+
   return (
     <section id="work" className="py-24 md:py-40 bg-black relative border-t border-white/5 overflow-hidden">
       <div className="max-w-[96%] mx-auto px-2 md:px-6 relative z-10">
@@ -44,6 +47,7 @@ export const Portfolio: React.FC = () => {
             {selectedClients.map((client, i) => (
               <React.Fragment key={i}>
                 <span 
+                  onMouseEnter={playHover}
                   className="inline-block text-2xl md:text-5xl lg:text-[7rem] font-black text-neutral-900 uppercase cursor-crosshair transition-all duration-300 hover:text-white hover:scale-105 hover:z-50 select-none whitespace-nowrap"
                   style={{ fontStretch: 'condensed' }}
                 >
@@ -65,6 +69,7 @@ export const Portfolio: React.FC = () => {
             {artists.map((artist, i) => (
               <React.Fragment key={i}>
                 <span 
+                  onMouseEnter={playHover}
                   className="inline-block text-2xl md:text-5xl lg:text-[5.5rem] font-black text-neutral-900 uppercase cursor-crosshair transition-all duration-300 hover:text-white hover:scale-110 hover:z-50 select-none whitespace-nowrap"
                   style={{ fontStretch: 'condensed' }}
                 >

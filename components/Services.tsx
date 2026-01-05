@@ -1,5 +1,6 @@
 import React from 'react';
 import { Zap, Lightbulb, Music, Mic2, Film } from 'lucide-react';
+import { useSonic } from './SonicIdentity';
 
 const services = [
   {
@@ -12,8 +13,8 @@ const services = [
   {
     id: "02",
     title: "CREATE",
-    category: "Composition",
-    details: "Sound Design / Original Soundtracks",
+    category: "Sonic Architecture",
+    details: "Original Scores / SFX / Audio Branding",
     icon: <Music className="w-4 h-4" />
   },
   {
@@ -33,6 +34,8 @@ const services = [
 ];
 
 export const Services: React.FC = () => {
+  const { playHover } = useSonic();
+
   return (
     <section id="services" className="py-24 bg-neutral-950 border-t border-white/5 relative overflow-hidden">
       {/* Decorative Top Line matching Infrastructure */}
@@ -59,7 +62,11 @@ export const Services: React.FC = () => {
           <div className="lg:col-span-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {services.map((service, index) => (
-                <div key={index} className="p-8 border border-white/5 bg-neutral-900/10 hover:bg-white/5 transition-all duration-700 group relative overflow-hidden flex flex-col justify-between min-h-[200px]">
+                <div 
+                  key={index} 
+                  onMouseEnter={playHover}
+                  className="p-8 border border-white/5 bg-neutral-900/10 hover:bg-white/5 transition-all duration-700 group relative overflow-hidden flex flex-col justify-between min-h-[200px]"
+                >
                   
                   {/* Decorative dot */}
                   <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">

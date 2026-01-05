@@ -24,7 +24,7 @@ export const Contact: React.FC = () => {
                     <Mail size={24} />
                 </div>
                 <div className="overflow-hidden">
-                    <p className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 mb-1 font-mono">Channel: Email</p>
+                    <p className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 mb-1 font-mono">Email</p>
                     <a href="mailto:contact@spmcreativecompany.com" className="text-lg font-bold hover:text-neutral-300 transition-colors uppercase">contact@spmcreativecompany.com</a>
                 </div>
             </div>
@@ -34,7 +34,7 @@ export const Contact: React.FC = () => {
                     <Phone size={24} />
                 </div>
                 <div>
-                    <p className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 mb-1 font-mono">Channel: Phone</p>
+                    <p className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 mb-1 font-mono">Phone</p>
                     <a href="tel:+18507740710" className="text-lg font-bold hover:text-neutral-300 transition-colors">+1 850 774 0710</a>
                 </div>
             </div>
