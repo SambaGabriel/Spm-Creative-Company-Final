@@ -11,8 +11,10 @@ import { ArtistPortal } from './components/ArtistPortal';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
 import { BackgroundGraphics } from './components/BackgroundGraphics';
+import { Preloader } from './components/Preloader';
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -26,19 +28,26 @@ export default function App() {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black antialiased relative">
       <CustomCursor />
-      <BackgroundGraphics />
-      <Navbar scrolled={scrolled} />
-      <main className="relative z-10">
-        <Hero />
-        <Manifesto />
-        <Services />
-        <Infrastructure />
-        <ArtistPortal />
-        <Portfolio />
-        <Team />
-        <Contact />
-      </main>
-      <Footer />
+      
+      {/* Preloader Layer */}
+      {loading && <Preloader onComplete={() => setLoading(false)} />}
+
+      {/* Main Content Layer - Fades in when loading is done */}
+      <div className={`transition-opacity duration-1000 ease-out ${loading ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+        <BackgroundGraphics />
+        <Navbar scrolled={scrolled} />
+        <main className="relative z-10">
+          <Hero startAnimation={!loading} />
+          <Manifesto />
+          <Services />
+          <Infrastructure />
+          <ArtistPortal />
+          <Portfolio />
+          <Team />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

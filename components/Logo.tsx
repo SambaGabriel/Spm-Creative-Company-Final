@@ -35,8 +35,8 @@ export const Logo: React.FC<LogoProps> = ({ className = "" }) => {
         </div>
       </div>
 
-      {/* Vertical Divider */}
-      <div className="hidden sm:block w-[1px] h-8 bg-white/10 rotate-12 transform origin-center"></div>
+      {/* Vertical Divider - Fixed to pipe (|) by removing rotation */}
+      <div className="hidden sm:block w-[1px] h-8 bg-white/10"></div>
 
       {/* Creative Company Badge */}
       <div className="hidden sm:flex flex-col justify-center select-none">

@@ -32,7 +32,7 @@ export const Portfolio: React.FC = () => {
         <div className="mb-48">
           <div className="flex flex-col md:flex-row items-baseline justify-between mb-16 border-b border-white/20 pb-4">
              <h3 className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none">
-              Selected <span className="text-transparent stroke-white stroke-1" style={{ WebkitTextStroke: '1px white' }}>Works</span>
+              Selected Works
              </h3>
              <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest mt-4 md:mt-0">
                Index 01 — Clients
