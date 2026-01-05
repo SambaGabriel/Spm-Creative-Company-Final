@@ -17,7 +17,7 @@ export const Manifesto: React.FC = () => {
               </h2>
             </div>
             <div className="hidden lg:block">
-              <div className="w-full h-[1px] bg-neutral-800 mb-4"></div>
+              {/* Removed horizontal line here */}
               <p className="text-[10px] font-mono text-neutral-600 uppercase">
                 SPM Creative Co. &copy; Global
               </p>

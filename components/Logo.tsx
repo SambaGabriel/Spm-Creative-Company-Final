@@ -38,16 +38,13 @@ export const Logo: React.FC<LogoProps> = ({ className = "" }) => {
       {/* Vertical Divider */}
       <div className="hidden sm:block w-[1px] h-8 bg-white/10 rotate-12 transform origin-center"></div>
 
-      {/* Global Headquarters Badge */}
+      {/* Creative Company Badge */}
       <div className="hidden sm:flex flex-col justify-center select-none">
-        <div className="flex items-center gap-2 mb-[2px]">
-           <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
-           <span className="text-[9px] font-mono font-bold tracking-[0.3em] text-white uppercase leading-none">
-             Global
-           </span>
-        </div>
-        <span className="text-[9px] font-mono tracking-[0.3em] text-neutral-600 uppercase leading-none pl-[14px]">
-          Headquarters
+         <span className="text-[9px] font-mono font-bold tracking-[0.3em] text-white uppercase leading-none mb-[3px]">
+           Creative
+         </span>
+        <span className="text-[9px] font-mono tracking-[0.3em] text-neutral-600 uppercase leading-none">
+          Company
         </span>
       </div>
     </div>
