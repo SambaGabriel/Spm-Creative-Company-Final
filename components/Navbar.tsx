@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { WorldClocks, WaveformWidget } from './Widgets';
 import { Logo } from './Logo';
-import { useSonic } from './SonicIdentity';
 
 interface NavbarProps {
   scrolled: boolean;
@@ -11,7 +10,6 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
-  const { playHover, playClick } = useSonic();
 
   const navLinks = [
     { name: 'Vision', href: '#manifesto' },
@@ -24,7 +22,6 @@ export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    playClick();
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     
@@ -64,7 +61,6 @@ export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
         <a 
           href="#home" 
           onClick={(e) => handleScroll(e, '#home')}
-          onMouseEnter={playHover}
           className="z-50 flex items-center"
         >
           <Logo />
@@ -84,7 +80,6 @@ export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
                 key={link.name}
                 href={link.href} 
                 onClick={(e) => handleScroll(e, link.href)}
-                onMouseEnter={playHover}
                 className="hover:text-white transition-all duration-300 relative group"
               >
                 {link.name}
@@ -100,7 +95,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
           {/* Mobile Toggle */}
           <button 
             className="md:hidden text-white z-50 p-2" 
-            onClick={() => { toggleMenu(); playClick(); }} 
+            onClick={() => { toggleMenu(); }} 
             aria-label="Toggle Menu"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
