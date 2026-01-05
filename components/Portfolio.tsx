@@ -1,16 +1,14 @@
 import React from 'react';
 
-// Cases extraídos do PDF
-const featuredCases = [
-  "Novo Nordisk Sound Design 360",
-  "Gloria Estefan BRAZIL305",
-  "Júlio Iglesias & Zezé Di Camargo",
-  "Bruno & Marrone Ao Vivo",
-  "Global Soundscapes",
-  "Urban Symphony"
+// Lista de clientes atualizada conforme imagem solicitada (Index 01)
+const selectedClients = [
+  "Adidas", "Amazon", "Asics", "Budweiser", "Centauro", "Converse", 
+  "Fila", "Havaianas", "HBO Max", "Heinz", "iFood", "Itaú", 
+  "MASP", "Microsoft", "NBA", "Nike", "O Boticário", "Oakley", 
+  "Porsche", "Red Bull", "Rider", "Samsung", "Track & Field", "Umbro"
 ];
 
-// Lista completa de artistas
+// Lista de artistas (Index 02) - Removidos duplicatas (Microsoft, Budweiser) que foram para Clientes
 const artists = [
   "Alejandro Sanz", "Alexandre Pires", "Alcione", "Art Popular", "Babado Novo", "Belo", 
   "Bruno & Marrone", "Cauby Peixoto", "Chitãozinho & Xororó", "Demônios da Garoa", 
@@ -22,7 +20,7 @@ const artists = [
   "Raça Negra", "Reginaldo Rossi", "Roberta Miranda", "Roberto Carlos", "Ronnie Von", 
   "Tonico & Tinoco", "Rio Negro & Solimões", "Seu Jorge", "Sergio Reis", "Sidney Magal", 
   "Só Pra Contrariar", "Vanessa da Mata", "Vitor Kley", "Wesley Safadão", 
-  "Zezé Di Camargo & Luciano", "Porsche", "Nike", "Budweiser", "Microsoft"
+  "Zezé Di Camargo & Luciano"
 ];
 
 export const Portfolio: React.FC = () => {
@@ -30,33 +28,34 @@ export const Portfolio: React.FC = () => {
     <section id="work" className="py-24 md:py-40 bg-black relative border-t border-white/5 overflow-hidden">
       <div className="max-w-[96%] mx-auto px-2 md:px-6 relative z-10">
         
-        {/* Etapa 1: Featured Cases - Architectural Layout */}
+        {/* Etapa 1: Selected Clients - Typographic Layout */}
         <div className="mb-48">
           <div className="flex flex-col md:flex-row items-baseline justify-between mb-16 border-b border-white/20 pb-4">
              <h3 className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none">
               Selected <span className="text-transparent stroke-white stroke-1" style={{ WebkitTextStroke: '1px white' }}>Works</span>
              </h3>
              <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest mt-4 md:mt-0">
-               Index 01 — Cases
+               Index 01 — Clients
              </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-8">
-            {featuredCases.map((project, i) => (
-              <div key={i} className="group relative border-b border-neutral-900 pb-8 hover:border-white transition-colors duration-700">
-                <span className="block text-[9px] font-mono text-neutral-600 mb-2">0{i + 1}</span>
-                <h4 className="text-3xl md:text-5xl font-bold text-neutral-400 group-hover:text-white uppercase tracking-tight transition-all duration-500">
-                  {project}
-                </h4>
-                <div className="absolute right-0 bottom-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <span className="text-[9px] font-mono bg-white text-black px-2 py-1 uppercase">View Case</span>
-                </div>
-              </div>
+          {/* Layout Texto Justificado (Clients) */}
+          <div className="text-justify leading-[1.1] md:leading-[0.9] tracking-tight mix-blend-screen">
+            {selectedClients.map((client, i) => (
+              <React.Fragment key={i}>
+                <span 
+                  className="inline-block text-2xl md:text-5xl lg:text-[7rem] font-black text-neutral-900 uppercase cursor-crosshair transition-all duration-300 hover:text-white hover:scale-105 hover:z-50 select-none whitespace-nowrap"
+                  style={{ fontStretch: 'condensed' }}
+                >
+                  {client}
+                </span>
+                {" "}
+              </React.Fragment>
             ))}
           </div>
         </div>
 
-        {/* Etapa 2: Artists & Partners - Justified Text Block (Data Texture) */}
+        {/* Etapa 2: Artists & Partners - Justified Text Block */}
         <div className="relative">
           <div className="absolute -top-12 left-0 text-xs font-mono text-neutral-500 uppercase tracking-widest">
             Index 02 — Legacy & Partners

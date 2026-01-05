@@ -9,9 +9,7 @@ export const Manifesto: React.FC = () => {
           {/* Sticky Title Column */}
           <div className="lg:w-1/2 pt-24 pb-12 lg:py-40 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-between border-r border-white/10 pr-8">
             <div>
-              <span className="block text-[10px] font-mono text-neutral-500 tracking-[0.4em] uppercase mb-8">
-                01 — The Vision
-              </span>
+              {/* Removed 'The Vision' H3 header here */}
               <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] uppercase">
                 An idea of a world <br/>
                 materialized <br/>

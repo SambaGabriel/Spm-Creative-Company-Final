@@ -1,74 +1,101 @@
 import React from 'react';
+import { Zap, Lightbulb, Music, Mic2, Film } from 'lucide-react';
 
 const services = [
   {
     id: "01",
     title: "DEFINE",
     category: "Artistic Direction",
-    details: "Research / Curation / Positioning / Identity / Creative Guidance"
+    details: "Research / Curation / Positioning",
+    icon: <Lightbulb className="w-4 h-4" />
   },
   {
     id: "02",
     title: "CREATE",
     category: "Composition",
-    details: "Musical Works / Sound Design / Original Soundtracks / Jingles"
+    details: "Sound Design / Original Soundtracks",
+    icon: <Music className="w-4 h-4" />
   },
   {
     id: "03",
     title: "EXECUTE",
     category: "Production",
-    details: "Musical Direction / Recording / Mixing / Mastering / Industry Standards"
+    details: "Recording / Mixing / Mastering",
+    icon: <Mic2 className="w-4 h-4" />
   },
   {
     id: "04",
     title: "MATERIALIZE",
-    category: "Audiovisual & Events",
-    details: "Cinematic Direction / Project Creation / Sound Systems / Infrastructure"
+    category: "Audiovisual",
+    details: "Cinematic Direction / 8K Workflow",
+    icon: <Film className="w-4 h-4" />
   }
 ];
 
 export const Services: React.FC = () => {
   return (
-    <section id="services" className="py-24 md:py-40 bg-neutral-950 border-t border-white/5">
-      <div className="max-w-[96%] mx-auto px-2 md:px-6">
-        
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20">
-          <h3 className="text-sm font-mono tracking-[0.4em] text-neutral-500 uppercase">
-            02 — Capabilities
-          </h3>
-          <p className="text-white text-lg md:text-xl font-light max-w-md text-right mt-4 md:mt-0">
-            A multidisciplinary approach designed for <br/> complex creative challenges.
-          </p>
-        </div>
+    <section id="services" className="py-24 bg-neutral-950 border-t border-white/5 relative overflow-hidden">
+      {/* Decorative Top Line matching Infrastructure */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
-        <div className="flex flex-col">
-          {services.map((service, index) => (
-            <div 
-              key={index} 
-              className="group relative border-t border-white/10 hover:border-white transition-colors duration-500 py-12 md:py-16 flex flex-col md:flex-row justify-between items-start md:items-center cursor-default"
-            >
-              <div className="flex items-baseline gap-8 md:gap-16">
-                <span className="text-xs font-mono text-neutral-600 group-hover:text-white transition-colors">
-                  {service.id}
-                </span>
-                <h4 className="text-4xl md:text-7xl font-bold text-neutral-800 group-hover:text-white transition-colors duration-500 uppercase tracking-tighter">
-                  {service.title}
-                </h4>
-              </div>
-
-              <div className="mt-6 md:mt-0 md:text-right">
-                <p className="text-sm font-mono text-white tracking-widest uppercase mb-2">
-                  {service.category}
-                </p>
-                <p className="text-xs text-neutral-500 max-w-xs md:ml-auto group-hover:text-neutral-300 transition-colors">
-                  {service.details}
-                </p>
-              </div>
+      <div className="max-w-[94%] mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+          
+          {/* Left Column - Sticky Title */}
+          <div className="lg:col-span-4 lg:sticky lg:top-32 mb-8 lg:mb-0">
+            <div className="flex items-center gap-3 mb-6">
+               <Zap className="text-white w-4 h-4 animate-pulse" />
+               <span className="text-[9px] font-mono tracking-[0.3em] text-white/40 uppercase">Creative Matrix: Active</span>
             </div>
-          ))}
-          <div className="border-t border-white/10"></div>
-        </div>
+            <h3 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase text-white leading-tight mb-6">
+              Capabilities
+            </h3>
+            <p className="text-neutral-500 text-sm font-light max-w-xs leading-relaxed">
+              A multidisciplinary approach designed for complex creative challenges. Bridging strategy and execution.
+            </p>
+          </div>
 
+          {/* Right Column - Grid of Cards */}
+          <div className="lg:col-span-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {services.map((service, index) => (
+                <div key={index} className="p-8 border border-white/5 bg-neutral-900/10 hover:bg-white/5 transition-all duration-700 group relative overflow-hidden flex flex-col justify-between min-h-[200px]">
+                  
+                  {/* Decorative dot */}
+                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
+                    <div className="w-1 h-1 bg-white rounded-full"></div>
+                  </div>
+
+                  {/* Header: Icon + Category */}
+                  <div className="flex items-center gap-4 mb-6 text-neutral-500 group-hover:text-white transition-colors">
+                    {service.icon}
+                    <span className="text-[9px] font-mono tracking-widest uppercase">{service.category}</span>
+                  </div>
+
+                  {/* Main Title */}
+                  <h4 className="text-4xl font-bold text-white tracking-tighter uppercase group-hover:translate-x-2 transition-transform duration-500 mb-4">
+                    {service.title}
+                  </h4>
+
+                  {/* Footer: Details (replacing decorative bars for functionality) */}
+                  <div className="mt-auto pt-4 border-t border-white/5">
+                     <p className="text-[10px] text-neutral-500 font-mono uppercase tracking-wider group-hover:text-neutral-300 transition-colors">
+                       {service.details}
+                     </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Bottom Status Bar */}
+            <div className="mt-8 p-6 bg-white/[0.02] border border-white/5 font-mono text-[8px] text-neutral-700 uppercase tracking-[0.4em] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <span>Methodology: Agile / Cinematic</span>
+                <span className="hidden md:block">Process: End-to-End</span>
+                <span className="animate-pulse">Ready to deploy...</span>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
