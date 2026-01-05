@@ -40,11 +40,11 @@ export const Portfolio: React.FC = () => {
           </div>
 
           {/* Layout Texto Justificado (Clients) */}
-          <div className="text-justify leading-[1.8] md:leading-[1.4] tracking-tight mix-blend-screen">
+          <div className="text-justify leading-[2] md:leading-[1.6] tracking-tight mix-blend-screen">
             {selectedClients.map((client, i) => (
               <React.Fragment key={i}>
                 <span 
-                  className="inline-block text-xl md:text-4xl lg:text-[6rem] font-black text-neutral-900 uppercase cursor-crosshair transition-all duration-300 hover:text-white hover:scale-105 hover:z-50 select-none whitespace-nowrap py-2 md:py-4"
+                  className="inline-block text-xl md:text-4xl lg:text-[6rem] font-black text-neutral-900 uppercase cursor-crosshair transition-all duration-300 hover:text-white hover:scale-105 hover:z-50 select-none whitespace-nowrap py-3 md:py-6"
                   style={{ fontStretch: 'condensed' }}
                 >
                   {client}
@@ -68,11 +68,11 @@ export const Portfolio: React.FC = () => {
           </div>
           
           {/* Bloco de texto idêntico ao Index 01 */}
-          <div className="text-justify leading-[1.8] md:leading-[1.4] tracking-tight mix-blend-screen">
+          <div className="text-justify leading-[2] md:leading-[1.6] tracking-tight mix-blend-screen">
             {artists.map((artist, i) => (
               <React.Fragment key={i}>
                 <span 
-                  className="inline-block text-xl md:text-4xl lg:text-[6rem] font-black text-neutral-900 uppercase cursor-crosshair transition-all duration-300 hover:text-white hover:scale-105 hover:z-50 select-none whitespace-nowrap py-2 md:py-4"
+                  className="inline-block text-xl md:text-4xl lg:text-[6rem] font-black text-neutral-900 uppercase cursor-crosshair transition-all duration-300 hover:text-white hover:scale-105 hover:z-50 select-none whitespace-nowrap py-3 md:py-6"
                   style={{ fontStretch: 'condensed' }}
                 >
                   {artist}
