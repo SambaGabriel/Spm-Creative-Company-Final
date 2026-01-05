@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 
 export const Contact: React.FC = () => {
   return (
@@ -44,8 +44,28 @@ export const Contact: React.FC = () => {
                     <MapPin size={24} />
                 </div>
                 <div>
-                    <p className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 mb-1 font-mono">Location</p>
-                    <p className="text-lg font-bold uppercase tracking-tight">Miami &middot; São Paulo</p>
+                    <p className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 mb-1 font-mono">Location (Open Map)</p>
+                    <div className="flex items-center gap-3 text-lg font-bold uppercase tracking-tight">
+                        <a 
+                            href="https://www.google.com/maps/search/?api=1&query=Miami+International+Airport" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:text-neutral-300 transition-colors flex items-center gap-1 border-b border-transparent hover:border-white/40"
+                            title="Open Miami Map"
+                        >
+                            Miami <ArrowUpRight size={14} className="opacity-50" />
+                        </a>
+                        <span className="text-neutral-700">&middot;</span>
+                        <a 
+                            href="https://www.google.com/maps/search/?api=1&query=Aeroporto+de+Congonhas" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:text-neutral-300 transition-colors flex items-center gap-1 border-b border-transparent hover:border-white/40"
+                            title="Open São Paulo Map"
+                        >
+                            São Paulo <ArrowUpRight size={14} className="opacity-50" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
