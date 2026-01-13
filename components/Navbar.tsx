@@ -74,7 +74,7 @@ export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
             <WorldClocks />
           </div>
 
-          <div className="hidden md:flex items-center space-x-8 text-[9px] uppercase tracking-[0.2em] font-bold text-neutral-500">
+          <div className="hidden md:flex items-center space-x-8 text-[11px] uppercase tracking-[0.2em] font-bold text-neutral-500">
             {navLinks.map((link) => (
               <a 
                 key={link.name}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Manifesto } from './components/Manifesto';
@@ -16,6 +16,7 @@ import { Preloader } from './components/Preloader';
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,12 +26,24 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!loading && audioRef.current) {
+      audioRef.current.play().catch(error => {
+        // Autoplay was prevented.
+        console.error("Audio autoplay was prevented:", error);
+      });
+    }
+  }, [loading]);
+
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black antialiased relative">
       <CustomCursor />
       
       {/* Preloader Layer */}
       {loading && <Preloader onComplete={() => setLoading(false)} />}
+
+      {/* Background Audio */}
+      <audio ref={audioRef} src="lofi-tropicalia.mp3" loop />
 
       {/* Main Content Layer - Fades in when loading is done */}
       <div className={`transition-opacity duration-1000 ease-out ${loading ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
