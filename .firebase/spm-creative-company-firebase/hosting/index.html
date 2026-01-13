@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPM Creative Company | Miami & São Paulo Global Production</title>
+    <meta name="description" content="Official website of SPM Creative Company USA. A global production powerhouse bridging Miami and São Paulo. Strategy, Sound Design, and Cinematic Visuals.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+      :root {
+        --spm-black: #000000;
+        --spm-white: #ffffff;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+        -webkit-font-smoothing: antialiased;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--spm-black);
+        color: var(--spm-white);
+        overflow-x: hidden;
+      }
+      
+      .noise-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.04;
+        background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+      }
+
+      .scanline {
+        width: 100%;
+        height: 100px;
+        z-index: 9998;
+        background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0) 100%);
+        opacity: 0.1;
+        position: fixed;
+        bottom: 100%;
+        pointer-events: none;
+        animation: scanline 8s linear infinite;
+      }
+
+      @keyframes scanline {
+        0% { bottom: 100%; }
+        100% { bottom: -100px; }
+      }
+
+      @keyframes progress-scan {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+      .animate-progress-scan {
+        animation: progress-scan 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+      }
+
+      /* Transitions */
+      @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes slide-in-bottom { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+      
+      .animate-in { animation-fill-mode: both; }
+      .fade-in { animation: fade-in 1s ease-out; }
+      .slide-in-from-bottom-12 { animation: slide-in-bottom 1s ease-out; }
+
+      @keyframes waveform {
+        0%, 100% { transform: scaleY(0.2); }
+        50% { transform: scaleY(1); }
+      }
+      .animate-waveform {
+        animation: waveform 0.8s ease-in-out infinite;
+        transform-origin: bottom;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0) translateX(0); }
+        50% { transform: translateY(-20px) translateX(10px); }
+      }
+      .animate-float {
+        animation: float 10s ease-in-out infinite;
+      }
+
+      /* Subtle zoom for hero video */
+      @keyframes slow-zoom {
+        0% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+      .animate-slow-zoom {
+        animation: slow-zoom 10s ease-out forwards;
+      }
+
+      ::-webkit-scrollbar { width: 3px; }
+      ::-webkit-scrollbar-track { background: black; }
+      ::-webkit-scrollbar-thumb { background: #222; }
+      ::-webkit-scrollbar-thumb:hover { background: #fff; }
+    </style>
+
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+  }
+}
+</script>
+    <script type="module" crossorigin src="/assets/index-ORgHSQar.js"></script>
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+    <div class="scanline"></div>
+    <div id="root"></div>
+  </body>
+</html>
