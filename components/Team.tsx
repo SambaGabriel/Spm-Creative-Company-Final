@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TEAM_IMAGE_URL = "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop&grayscale"; 
+const TEAM_IMAGE_URL = "public/team.jpg"; 
 
 export const Team: React.FC = () => {
   return (
