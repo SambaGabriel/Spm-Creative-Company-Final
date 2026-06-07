@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Upload, FileMusic, CheckCircle, Cpu, Send, User, Mail, FileText, AlertCircle } from 'lucide-react';
+import { Reveal } from './Reveal';
 
 export const ArtistPortal: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -69,6 +70,7 @@ export const ArtistPortal: React.FC = () => {
   return (
     <section id="vault" className="py-24 bg-black border-t border-white/5 relative">
       <div className="max-w-4xl mx-auto px-6">
+        <Reveal>
         <div className="flex items-center gap-4 mb-12">
           <div className="p-3 bg-white/5 rounded-full border border-white/10">
             <Cpu className="text-white w-6 h-6" />
@@ -78,6 +80,7 @@ export const ArtistPortal: React.FC = () => {
             <p className="text-xs text-neutral-500 font-mono tracking-wider">SECURE GLOBAL SUBMISSION ENGINE</p>
           </div>
         </div>
+        </Reveal>
 
         {uploadStatus !== 'complete' ? (
           <form onSubmit={handleSubmit} className="space-y-6">

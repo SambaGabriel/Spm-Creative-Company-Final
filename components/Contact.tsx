@@ -1,11 +1,12 @@
 import React from 'react';
 import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
+import { Reveal } from './Reveal';
 
 export const Contact: React.FC = () => {
   return (
     <section id="contact" className="py-24 md:py-32 bg-neutral-950 text-white relative border-t border-white/5">
       <div className="max-w-[94%] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20">
-        <div className="space-y-8">
+        <Reveal className="space-y-8">
           <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none uppercase">
             Let's create <br />
             <span className="text-neutral-600">together?</span>
@@ -16,9 +17,9 @@ export const Contact: React.FC = () => {
           <div className="pt-8">
             <div className="w-20 h-px bg-white/10"></div>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="flex flex-col justify-center space-y-6">
+        <Reveal delay={120} className="flex flex-col justify-center space-y-6">
             <div className="group flex items-center space-x-8 p-8 border border-neutral-900 bg-black/20">
                 <div className="p-4 bg-white/5 rounded-full text-neutral-400 group-hover:text-white transition-colors">
                     <Mail size={24} />
@@ -68,7 +69,7 @@ export const Contact: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
