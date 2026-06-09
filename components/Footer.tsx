@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
             <span className="font-mono text-[10px] tracking-[0.35em] uppercase text-white/40 block mb-5">
               Music · Image · Strategy Studio
             </span>
-            <h2 className="text-7xl md:text-9xl font-black tracking-tighter uppercase text-white leading-[0.8]">
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase text-white leading-[0.8]">
               SPM
             </h2>
           </div>

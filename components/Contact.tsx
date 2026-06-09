@@ -71,6 +71,31 @@ export const Contact: React.FC = () => {
             </div>
         </Reveal>
       </div>
+
+      {/* Localização — Downtown Miami (mapa preto e branco) */}
+      <div className="max-w-[94%] mx-auto px-6 mt-24">
+        <Reveal>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-6">
+            <span className="font-mono text-[10px] tracking-[0.35em] uppercase text-white/40">
+              Based in Downtown Miami
+            </span>
+            <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-white/40 mt-2 md:mt-0">
+              350 S Miami Ave · Miami, FL 33130
+            </span>
+          </div>
+          <div className="w-full aspect-[21/9] overflow-hidden bg-black">
+            <iframe
+              title="SPM — Downtown Miami"
+              src="https://www.google.com/maps?q=350%20S%20Miami%20Ave%2C%20Miami%2C%20FL%2033130&z=16&output=embed"
+              width="100%"
+              height="100%"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              style={{ border: 0, filter: 'grayscale(1) contrast(1.05)' }}
+            ></iframe>
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 };
