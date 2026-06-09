@@ -170,11 +170,11 @@
     <div class="noise-overlay"></div>
     <div class="scanline"></div>
     <div id="root">
-      <!-- Static SEO fallback: read by crawlers, replaced by React on load. -->
-      <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;font-family:'Inter',sans-serif;color:#fff;background:#000;">
-        <h1 style="font-size:clamp(40px,10vw,96px);font-weight:900;letter-spacing:-0.04em;margin:0;text-transform:uppercase;">SPM Creative Company</h1>
-        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.25em;text-transform:uppercase;opacity:0.6;margin-top:16px;">Music · Image · Strategy — Miami &amp; São Paulo</p>
-        <p style="max-width:640px;font-size:18px;font-weight:300;line-height:1.6;opacity:0.8;margin-top:24px;">SPM Creative Company is a creative studio bridging Miami and São Paulo. Artistic direction, sonic architecture, production and audiovisual for artists, brands and institutions on the global stage.</p>
+      <!-- SEO fallback: lido por crawlers, invisivel pro usuario (sem flash). Substituido pelo React no load. -->
+      <div style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
+        <h1>SPM Creative Company</h1>
+        <p>Music · Image · Strategy — Miami &amp; São Paulo</p>
+        <p>SPM Creative Company is a creative studio bridging Miami and São Paulo. Artistic direction, sonic architecture, production and audiovisual for artists, brands and institutions on the global stage.</p>
       </div>
     </div>
     <script type="module" src="/index.tsx"></script>
