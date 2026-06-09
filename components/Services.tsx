@@ -1,9 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Reveal } from './Reveal';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
@@ -65,7 +62,35 @@ const SectionHeader: React.FC = () => (
   </div>
 );
 
-/* ───────── Fallback estático (mobile / reduced-motion): lista de hoje ───────── */
+const RowContent: React.FC<{ s: typeof services[number]; cinematic?: boolean }> = ({ s, cinematic }) => {
+  const words = s.description.split(' ');
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start py-12 group">
+      <div className="lg:col-span-6">
+        <div className={cinematic ? 'cap-verb relative z-40 inline-block will-change-transform' : 'inline-block'}>
+          <h4 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase text-white leading-[0.85]">
+            {s.title}
+          </h4>
+        </div>
+      </div>
+      <div className="lg:col-span-6 lg:pt-3">
+        <span className={`${cinematic ? 'cap-eyebrow ' : ''}font-mono text-[10px] tracking-[0.3em] uppercase text-white/50 block mb-5`}>{s.category}</span>
+        <p className="text-base md:text-lg font-light text-neutral-300 leading-relaxed max-w-xl mb-6">
+          {cinematic
+            ? words.map((w, wi) => (
+                <React.Fragment key={wi}>
+                  <span className="cap-word inline-block will-change-transform">{w}</span>{' '}
+                </React.Fragment>
+              ))
+            : s.description}
+        </p>
+        <p className={`${cinematic ? 'cap-deliv ' : ''}font-mono text-[10px] tracking-[0.15em] uppercase text-neutral-500 leading-relaxed`}>{s.deliverables}</p>
+      </div>
+    </div>
+  );
+};
+
+/* ───────── Fallback estático (mobile / reduced-motion) ───────── */
 const ServicesStatic: React.FC = () => (
   <section id="services" className="py-24 md:py-32 bg-neutral-950 relative overflow-hidden">
     <div className="max-w-[94%] mx-auto px-6">
@@ -74,124 +99,101 @@ const ServicesStatic: React.FC = () => (
       </Reveal>
       {services.map((s, i) => (
         <Reveal key={s.id} delay={i * 80}>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start py-12 group">
-            <div className="lg:col-span-6">
-              <h4 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase text-white leading-[0.85]">
-                {s.title}
-              </h4>
-            </div>
-            <div className="lg:col-span-6 lg:pt-3">
-              <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/50 block mb-5">{s.category}</span>
-              <p className="text-base md:text-lg font-light text-neutral-300 leading-relaxed max-w-xl mb-6">{s.description}</p>
-              <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-neutral-500 leading-relaxed">{s.deliverables}</p>
-            </div>
-          </div>
+          <RowContent s={s} />
         </Reveal>
       ))}
     </div>
   </section>
 );
 
-/* ───────── Cinematic (desktop): palco fixado, scroll conduz os 4 atos ───────── */
+/* ───────── Cinematic (desktop): automático, um ato por vez ─────────
+   Cada verbo nasce GRANDE no centro da tela, assenta no seu slot e o texto
+   entra em cascata. Uma FILA garante ordem (DEFINE→…→MATERIALIZE) e que
+   nunca dois atos rodem juntos. A página mantém o tamanho normal. */
 const ServicesCinematic: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
-    const stage = stageRef.current;
-    if (!section || !stage) return;
+    if (!section) return;
 
     const ctx = gsap.context(() => {
-      const acts = gsap.utils.toArray<HTMLElement>('.cap-act', stage);
+      const rows = gsap.utils.toArray<HTMLElement>('.cap-row', section);
+      const played = rows.map(() => false);
+      const inView = rows.map(() => false);
+      let playing = false;
 
-      // Mede, com tudo em estado neutro, o deslocamento do slot final de cada verbo até o centro do palco.
-      const offsets = acts.map((act) => {
-        const verb = act.querySelector<HTMLElement>('.cap-verb')!;
-        const sr = stage.getBoundingClientRect();
+      // Tudo invisível até o ato tocar.
+      rows.forEach((row) => {
+        gsap.set(row.querySelectorAll('.cap-verb, .cap-eyebrow, .cap-word, .cap-deliv'), { autoAlpha: 0 });
+      });
+
+      const playAct = (row: HTMLElement, done: () => void) => {
+        const verb = row.querySelector<HTMLElement>('.cap-verb')!;
+        const eyebrow = row.querySelector<HTMLElement>('.cap-eyebrow')!;
+        const words = row.querySelectorAll<HTMLElement>('.cap-word');
+        const deliv = row.querySelector<HTMLElement>('.cap-deliv')!;
+
+        // Mede AGORA a distância do slot final até o centro da tela.
         const vr = verb.getBoundingClientRect();
-        return {
-          dx: sr.left + sr.width / 2 - (vr.left + vr.width / 2),
-          dy: sr.top + sr.height / 2 - (vr.top + vr.height / 2),
-        };
+        const dx = window.innerWidth / 2 - (vr.left + vr.width / 2);
+        const dy = window.innerHeight / 2 - (vr.top + vr.height / 2);
+
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        tl.fromTo(verb, { x: dx, y: dy, scale: 2.2, autoAlpha: 0 }, { autoAlpha: 1, duration: 0.45 })
+          .to({}, { duration: 0.45 }) // segura no centro
+          .to(verb, { x: 0, y: 0, scale: 1, duration: 1.05, ease: 'power3.inOut' })
+          .fromTo(eyebrow, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.45 }, '-=0.45')
+          .fromTo(words, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.022 }, '-=0.25')
+          .fromTo(deliv, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.4 }, '-=0.15')
+          // libera o próximo ato um pouco antes do fim (flow contínuo)
+          .add(done, '-=0.5');
+      };
+
+      const tryNext = () => {
+        if (playing) return;
+        const next = played.findIndex((p) => !p);
+        if (next === -1 || !inView[next]) return;
+        playing = true;
+        played[next] = true;
+        playAct(rows[next], () => {
+          playing = false;
+          tryNext();
+        });
+      };
+
+      const observers = rows.map((row, i) => {
+        const obs = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              inView[i] = true;
+              obs.unobserve(row);
+              tryNext();
+            }
+          },
+          { threshold: 0.35 }
+        );
+        obs.observe(row);
+        return obs;
       });
 
-      gsap.set(acts, { autoAlpha: 0 });
-
-      const tl = gsap.timeline({
-        defaults: { ease: 'power3.out' },
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: () => '+=' + window.innerHeight * acts.length * 1.15,
-          pin: stage,
-          scrub: 1,
-          anticipatePin: 1,
-        },
-      });
-
-      acts.forEach((act, i) => {
-        const verb = act.querySelector<HTMLElement>('.cap-verb')!;
-        const eyebrow = act.querySelector<HTMLElement>('.cap-eyebrow')!;
-        const words = act.querySelectorAll<HTMLElement>('.cap-word');
-        const deliv = act.querySelector<HTMLElement>('.cap-deliv')!;
-        const { dx, dy } = offsets[i];
-
-        tl.set(act, { autoAlpha: 1 })
-          // 1) verbo nasce GRANDE no centro do palco
-          .fromTo(verb, { x: dx, y: dy, scale: 2.2, autoAlpha: 0 }, { autoAlpha: 1, duration: 1.1 })
-          .to({}, { duration: 0.5 }) // segura no centro
-          // 2) voa/assenta no slot lateral
-          .to(verb, { x: 0, y: 0, scale: 1, duration: 2.2, ease: 'power3.inOut' })
-          // 3) texto entra: disciplina → palavras → entregáveis
-          .fromTo(eyebrow, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.6 }, '-=0.9')
-          .fromTo(words, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.035 }, '-=0.5')
-          .fromTo(deliv, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.6 }, '-=0.2')
-          .to({}, { duration: 1.8 }); // tempo de leitura
-        // 4) sai de cena (menos o último ato, que fica)
-        if (i < acts.length - 1) tl.to(act, { autoAlpha: 0, duration: 0.8 });
-      });
+      return () => observers.forEach((o) => o.disconnect());
     }, section);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} id="services" className="bg-neutral-950 relative">
-      <div ref={stageRef} className="h-screen relative overflow-hidden">
-        {/* Header fixo no topo do palco */}
-        <div className="max-w-[94%] mx-auto px-6 pt-28">
-          <SectionHeader />
-        </div>
-
-        {/* Atos — um por vez, conduzidos pelo scroll */}
-        {services.map((s) => {
-          const words = s.description.split(' ');
-          return (
-            <div key={s.id} className="cap-act absolute inset-0 flex items-center invisible">
-              <div className="max-w-[94%] mx-auto px-6 w-full grid grid-cols-12 gap-10 items-center">
-                <div className="col-span-6">
-                  <div className="cap-verb inline-block will-change-transform">
-                    <h4 className="text-5xl xl:text-6xl font-black tracking-tighter uppercase text-white leading-[0.85]">
-                      {s.title}
-                    </h4>
-                  </div>
-                </div>
-                <div className="col-span-6">
-                  <span className="cap-eyebrow font-mono text-[10px] tracking-[0.3em] uppercase text-white/50 block mb-5">{s.category}</span>
-                  <p className="text-base md:text-lg font-light text-neutral-300 leading-relaxed max-w-xl mb-6">
-                    {words.map((w, wi) => (
-                      <React.Fragment key={wi}>
-                        <span className="cap-word inline-block will-change-transform">{w}</span>{' '}
-                      </React.Fragment>
-                    ))}
-                  </p>
-                  <p className="cap-deliv font-mono text-[10px] tracking-[0.15em] uppercase text-neutral-500 leading-relaxed">{s.deliverables}</p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+    <section ref={sectionRef} id="services" className="py-24 md:py-32 bg-neutral-950 relative overflow-hidden">
+      <div className="max-w-[94%] mx-auto px-6">
+        <Reveal>
+          <div className="pb-8"><SectionHeader /></div>
+        </Reveal>
+        {services.map((s) => (
+          <div key={s.id} className="cap-row">
+            <RowContent s={s} cinematic />
+          </div>
+        ))}
       </div>
     </section>
   );
