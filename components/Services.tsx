@@ -32,41 +32,38 @@ const services = [
   },
 ];
 
-// Dispara uma vez quando a linha entra na viewport (mesma ideia do Reveal).
-function useInView<T extends Element>(threshold = 0.3) {
-  const ref = useRef<T>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          obs.unobserve(el);
-        }
-      },
-      { threshold, rootMargin: '0px 0px -10% 0px' }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return { ref, inView };
-}
+// Intervalo entre a entrada de cada verbo (um de cada vez, estilo GOKU).
+const ACT_INTERVAL_MS = 1250;
 
-const CapabilityRow: React.FC<{ s: typeof services[number] }> = ({ s }) => {
-  const { ref, inView } = useInView<HTMLDivElement>(0.3);
+const CapabilityRow: React.FC<{ s: typeof services[number]; play: boolean }> = ({ s, play }) => {
+  const verbRef = useRef<HTMLDivElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    if (!play || playing) return;
+    const el = verbRef.current;
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (el && isDesktop && !reduced) {
+      // FLIP: mede onde o verbo VAI ficar e anima a partir do centro da tela até lá.
+      const r = el.getBoundingClientRect();
+      const dx = window.innerWidth / 2 - (r.left + r.width / 2);
+      const dy = window.innerHeight / 2 - (r.top + r.height / 2);
+      el.style.setProperty('--dx', `${dx}px`);
+      el.style.setProperty('--dy', `${dy}px`);
+    }
+    setPlaying(true);
+  }, [play, playing]);
+
   const words = s.description.split(' ');
-  // Entregáveis entram depois das palavras (aprox.).
-  const delivDelay = 0.7 + words.length * 0.026 + 0.15;
+  const wordBase = 1.25; // texto começa quando o verbo assenta
+  const delivDelay = wordBase + words.length * 0.026 + 0.15;
+
   return (
-    <div
-      ref={ref}
-      className={`grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start py-12 group ${inView ? 'in-view' : ''}`}
-    >
-      {/* Left: verbo — bloom grande e recua pro lugar */}
+    <div className={`grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start py-12 group ${playing ? 'in-view' : ''}`}>
+      {/* Left: verbo — nasce no centro da tela e voa pro lugar */}
       <div className="lg:col-span-6">
-        <div className="cap-verb inline-block">
+        <div ref={verbRef} className="cap-verb relative z-40 inline-block">
           <h4 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter uppercase text-white leading-[0.85] group-hover:translate-x-2 transition-transform duration-500">
             {s.title}
           </h4>
@@ -74,11 +71,11 @@ const CapabilityRow: React.FC<{ s: typeof services[number] }> = ({ s }) => {
       </div>
       {/* Right: disciplina + descrição (palavra a palavra) + entregáveis */}
       <div className="lg:col-span-6 lg:pt-3">
-        <span className="cap-eyebrow font-mono text-[10px] tracking-[0.3em] uppercase text-white/50 block mb-5">{s.category}</span>
+        <span className="cap-eyebrow font-mono text-[10px] tracking-[0.3em] uppercase text-white/50 block mb-5" style={{ animationDelay: '1.1s' }}>{s.category}</span>
         <p className="text-base md:text-lg font-light text-neutral-300 leading-relaxed max-w-xl mb-6">
           {words.map((w, i) => (
             <React.Fragment key={i}>
-              <span className="cap-word" style={{ animationDelay: `${0.7 + i * 0.026}s` }}>{w}</span>{' '}
+              <span className="cap-word" style={{ animationDelay: `${wordBase + i * 0.026}s` }}>{w}</span>{' '}
             </React.Fragment>
           ))}
         </p>
@@ -91,8 +88,38 @@ const CapabilityRow: React.FC<{ s: typeof services[number] }> = ({ s }) => {
 };
 
 export const Services: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [started, setStarted] = useState(false);
+  const [acts, setActs] = useState(0);
+
+  // Dispara a sequência quando a seção entra na tela.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true);
+          obs.unobserve(el);
+        }
+      },
+      { threshold: 0.18 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  // Um ato de cada vez: DEFINE → CREATE → EXECUTE → MATERIALIZE.
+  useEffect(() => {
+    if (!started) return;
+    const timers = services.map((_, i) =>
+      window.setTimeout(() => setActs((a) => Math.max(a, i + 1)), i * ACT_INTERVAL_MS)
+    );
+    return () => timers.forEach(clearTimeout);
+  }, [started]);
+
   return (
-    <section id="services" className="py-24 md:py-32 bg-neutral-950 relative overflow-hidden">
+    <section ref={sectionRef} id="services" className="py-24 md:py-32 bg-neutral-950 relative overflow-hidden">
       <div className="max-w-[94%] mx-auto px-6">
 
         {/* Section header */}
@@ -109,9 +136,9 @@ export const Services: React.FC = () => {
           </div>
         </Reveal>
 
-        {/* Editorial rows — animação cinematográfica ao entrar na tela */}
-        {services.map((s) => (
-          <CapabilityRow key={s.id} s={s} />
+        {/* Editorial rows — cada verbo entra no centro da tela, um por vez, e voa pro lugar */}
+        {services.map((s, i) => (
+          <CapabilityRow key={s.id} s={s} play={acts > i} />
         ))}
 
       </div>
