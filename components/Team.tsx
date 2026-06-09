@@ -1,65 +1,86 @@
 import React from 'react';
 import { Reveal } from './Reveal';
 
-const TEAM_IMAGE_URL = "public/team.jpg";
+const TEAM_IMAGE_URL = "/team.jpg";
+
+const partners = [
+  {
+    id: '01',
+    name: 'Gabriel Arevalo',
+    role: 'Founder & Musical Director',
+    bio: 'Strategic pillar with deep global presence and over 3,000 concerts directed. A legitimate representative of Bossa Nova and the "Real MPB" movements, he leads SPM\'s executive positioning as a bridge between tradition and the global market.',
+  },
+  {
+    id: '02',
+    name: 'Maestro Caixote',
+    role: 'Maestro & Arranger',
+    bio: 'With over 40 years of career and 100 million records sold, Caixote is the musical soul and the technical sophistication of the group. His legacy defines the standard of excellence at SPM.',
+  },
+  {
+    id: '03',
+    name: 'João Paulo Faria',
+    role: 'Audiovisual Director & Partner',
+    bio: 'Miami-based director, specialist in cinematic narrative and AI integration. He elevates SPM\'s visual aesthetics to global standards, connecting the music to powerful visual storytelling.',
+  },
+];
 
 export const Team: React.FC = () => {
   return (
-    <section id="team" className="py-24 md:py-40 bg-white text-black relative">
-        <div className="max-w-[94%] mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center mb-32">
-                
-                <Reveal className="lg:col-span-6 relative group order-2 lg:order-1">
-                    <div className="relative z-10 aspect-[4/5] overflow-hidden bg-neutral-100 border border-black/5">
-                        <img
-                            src={TEAM_IMAGE_URL}
-                            alt="The Partners"
-                            loading="lazy"
-                            className="w-full h-full object-cover grayscale contrast-[1.2] hover:contrast-100 transition-all duration-1000"
-                        />
-                    </div>
-                     <p className="mt-6 text-[9px] text-neutral-400 uppercase tracking-[0.3em] font-mono text-right">
-                        SPM PARTNERS: JOÃO PAULO FARIA / GABRIEL AREVALO / MAESTRO CAIXOTE
-                    </p>
-                </Reveal>
+    <section id="team" className="py-24 md:py-32 bg-[#efece3] text-[#0a0a0a] relative">
+      <div className="max-w-[94%] mx-auto px-6">
 
-                <Reveal delay={120} className="lg:col-span-6 flex flex-col justify-center h-full order-1 lg:order-2">
-                    <h2 className="text-6xl md:text-8xl lg:text-[clamp(5rem,10vw,10rem)] font-bold mb-10 tracking-tighter leading-[0.85] uppercase">
-                        The <br/>Vision
-                    </h2>
-                    <div className="w-24 h-[2px] bg-black mb-10"></div>
-                    <p className="text-xl md:text-2xl font-light leading-relaxed text-neutral-900 max-w-xl">
-                        The union of three trajectories consolidates SPM's global expansion. An ecosystem where music and image converge to create realities.
-                    </p>
-                </Reveal>
+        {/* Section header */}
+        <Reveal>
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-8">
+            <div>
+              <span className="font-mono text-[10px] tracking-[0.35em] uppercase text-[#0a0a0a]/45 block mb-4">
+                The Vision / Partners
+              </span>
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-[0.85]">
+                The Vision
+              </h2>
             </div>
+            <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-[#0a0a0a]/45 max-w-xs mt-6 md:mt-0 md:text-right leading-relaxed">
+              Three trajectories — music and image converge to create realities.
+            </p>
+          </div>
+        </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-16 pt-16 border-t border-neutral-100">
-                <Reveal className="group">
-                    <h3 className="text-3xl font-bold mb-3 tracking-tighter uppercase group-hover:pl-2 transition-all duration-500">Gabriel Arevalo</h3>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-6 font-mono font-bold">Founder & Musical Director</p>
-                    <p className="text-base text-neutral-600 leading-relaxed font-light">
-                        Strategic pillar with deep global presence and over 3,000 concerts directed. A legitimate representative of Bossa Nova and the "Real MPB" movements, he leads SPM's executive positioning as a bridge between tradition and the global market.
-                    </p>
-                </Reveal>
-
-                <Reveal delay={120} className="group">
-                    <h3 className="text-3xl font-bold mb-3 tracking-tighter uppercase group-hover:pl-2 transition-all duration-500">Maestro Caixote</h3>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-6 font-mono font-bold">Maestro & Arranger</p>
-                    <p className="text-base text-neutral-600 leading-relaxed font-light">
-                        With over 40 years of career and 100 million records sold, Caixote is the musical soul and the technical sophistication of the group. His legacy defines the standard of excellence at SPM.
-                    </p>
-                </Reveal>
-
-                 <Reveal delay={240} className="group">
-                    <h3 className="text-3xl font-bold mb-3 tracking-tighter uppercase group-hover:pl-2 transition-all duration-500">João Paulo Faria</h3>
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-6 font-mono font-bold">Audiovisual Director & Partner</p>
-                    <p className="text-base text-neutral-600 leading-relaxed font-light">
-                        Miami-based director, specialist in cinematic narrative and AI integration. He elevates SPM's visual aesthetics to global standards, connecting the music to powerful visual storytelling.
-                    </p>
-                </Reveal>
+        {/* Portrait + caption */}
+        <Reveal>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end py-12">
+            <div className="lg:col-span-7">
+              <div className="aspect-[16/10] overflow-hidden bg-[#0a0a0a]/5">
+                <img src={TEAM_IMAGE_URL} alt="The Partners" loading="lazy" className="w-full h-full object-cover object-top grayscale contrast-[1.15] hover:contrast-100 transition-all duration-1000" />
+              </div>
             </div>
-        </div>
+            <div className="lg:col-span-5">
+              <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-[#0a0a0a]/45 leading-relaxed">
+                SPM Partners — João Paulo Faria / Gabriel Arevalo / Maestro Caixote.
+              </p>
+              <p className="text-xl md:text-2xl font-light leading-relaxed mt-6 max-w-md">
+                The union of three trajectories consolidates SPM&apos;s global expansion.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Partner entries */}
+        {partners.map((p, i) => (
+          <Reveal key={p.id} delay={i * 80}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start py-10 group">
+              <div className="lg:col-span-5">
+                <h3 className="text-3xl md:text-5xl font-black tracking-tighter uppercase leading-[0.9] group-hover:translate-x-2 transition-transform duration-500">{p.name}</h3>
+              </div>
+              <div className="lg:col-span-7">
+                <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#0a0a0a]/50 block mb-4">{p.role}</span>
+                <p className="text-base text-[#0a0a0a]/70 leading-relaxed font-light max-w-xl">{p.bio}</p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+
+      </div>
     </section>
   );
 };

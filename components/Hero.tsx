@@ -33,7 +33,7 @@ export const Hero: React.FC<HeroProps> = ({ startAnimation }) => {
   }, [startAnimation]);
 
   return (
-    <section id="home" className="relative h-screen w-full overflow-hidden bg-black flex flex-col justify-end pb-12 md:pb-24 border-b border-white/5">
+    <section id="home" className="relative h-screen w-full overflow-hidden bg-black flex flex-col justify-end pb-12 md:pb-24">
       {/* Background Video Layer with Cinematic Zoom */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video 
@@ -44,7 +44,7 @@ export const Hero: React.FC<HeroProps> = ({ startAnimation }) => {
           playsInline
           className={`w-full h-full object-cover animate-slow-zoom transition-all duration-2000 ease-in-out ${videoReveal ? 'opacity-100 grayscale-0 contrast-100' : 'opacity-50 grayscale contrast-[1.1]'}`}
         >
-          <source src="public/header-video.mp4" type="video/mp4" />
+          <source src="/header-video.mp4" type="video/mp4" />
         </video>
         <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent transition-opacity duration-2000 ${videoReveal ? 'opacity-40' : 'opacity-100'}`} />
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>

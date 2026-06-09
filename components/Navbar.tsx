@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { WorldClocks, WaveformWidget } from './Widgets';
+import { WorldClocks } from './Widgets';
 import { Logo } from './Logo';
 
 interface NavbarProps {
@@ -74,11 +74,11 @@ export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
             <WorldClocks />
           </div>
 
-          <div className="hidden md:flex items-center space-x-8 text-[11px] uppercase tracking-[0.2em] font-bold text-neutral-500">
+          <div className="hidden md:flex items-center space-x-8 font-mono text-[10px] uppercase tracking-[0.25em] text-neutral-400">
             {navLinks.map((link) => (
-              <a 
+              <a
                 key={link.name}
-                href={link.href} 
+                href={link.href}
                 onClick={(e) => handleScroll(e, link.href)}
                 className="hover:text-white transition-all duration-300 relative group"
               >
@@ -86,10 +86,6 @@ export const Navbar: React.FC<NavbarProps> = ({ scrolled }) => {
                 <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
-          </div>
-          
-          <div className="hidden sm:block pl-6 border-l border-white/10">
-            <WaveformWidget />
           </div>
 
           {/* Mobile Toggle */}

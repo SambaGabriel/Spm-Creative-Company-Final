@@ -3,13 +3,16 @@ import { Reveal } from './Reveal';
 
 export const Manifesto: React.FC = () => {
   return (
-    <section id="manifesto" className="relative bg-black text-white border-b border-white/10">
+    <section id="manifesto" className="relative bg-black text-white">
       <div className="max-w-[96%] mx-auto px-2 md:px-6">
         <div className="flex flex-col lg:flex-row">
 
           {/* Sticky Title Column */}
-          <div className="lg:w-1/2 pt-24 pb-12 lg:py-40 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-between border-r border-white/10 pr-8">
+          <div className="lg:w-1/2 pt-24 pb-12 lg:py-40 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-between pr-8">
             <div>
+              <span className="font-mono text-[10px] tracking-[0.35em] uppercase text-white/40 block mb-8">
+                Vision / Manifesto
+              </span>
               <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] uppercase">
                 An idea of a world <br/>
                 materialized <br/>
@@ -35,7 +38,6 @@ export const Manifesto: React.FC = () => {
 
             <Reveal>
               <div className="space-y-8">
-                <div className="w-12 h-1 bg-white"></div>
                 <p className="text-2xl md:text-4xl font-light leading-tight text-white">
                   Music. Image. Strategy. <br/>
                   <span className="text-neutral-500">One language.</span>

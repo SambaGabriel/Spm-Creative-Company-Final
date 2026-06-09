@@ -92,12 +92,12 @@ export const Portfolio: React.FC = () => {
         {/* Etapa 1: Selected Clients - Typographic Layout */}
         <div className="mb-40 md:mb-64">
           <Reveal>
-          <div className="flex flex-col md:flex-row items-baseline justify-between mb-12 md:mb-20 border-b border-white/20 pb-6">
+          <div className="flex flex-col md:flex-row items-baseline justify-between mb-12 md:mb-20 pb-6">
              <h3 className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none">
               Selected Works
              </h3>
              <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest mt-4 md:mt-0">
-               Index 01 — Clients
+               Clients
              </span>
           </div>
           </Reveal>
@@ -125,12 +125,12 @@ export const Portfolio: React.FC = () => {
         <div>
           {/* Header estruturalmente idêntico ao Index 01 */}
           <Reveal>
-          <div className="flex flex-col md:flex-row items-baseline justify-between mb-12 md:mb-20 border-b border-white/20 pb-6">
+          <div className="flex flex-col md:flex-row items-baseline justify-between mb-12 md:mb-20 pb-6">
              <h3 className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter leading-none">
               Legacy & Partners
              </h3>
              <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest mt-4 md:mt-0">
-               Index 02 — Artists
+               Artists
              </span>
           </div>
           </Reveal>

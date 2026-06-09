@@ -27,18 +27,32 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!loading && audioRef.current) {
-      audioRef.current.play().catch(error => {
-        // Autoplay was prevented.
-        console.error("Audio autoplay was prevented:", error);
-      });
-    }
+    if (loading) return;
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    let started = false;
+    const events = ['pointerdown', 'keydown', 'touchstart', 'wheel', 'scroll'];
+    const startAudio = () => {
+      if (started) return;
+      started = true;
+      audio.play().catch(() => {});
+      removeListeners();
+    };
+    const removeListeners = () => events.forEach(ev => window.removeEventListener(ev, startAudio));
+
+    // Try immediate autoplay; if the browser blocks it, start on the first user interaction.
+    audio.play().then(() => { started = true; }).catch(() => {
+      events.forEach(ev => window.addEventListener(ev, startAudio, { passive: true }));
+    });
+
+    return removeListeners;
   }, [loading]);
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black antialiased relative">
       <CustomCursor />
-      
+
       {/* Preloader Layer */}
       {loading && <Preloader onComplete={() => setLoading(false)} />}
 

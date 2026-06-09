@@ -4,9 +4,12 @@ import { Reveal } from './Reveal';
 
 export const Contact: React.FC = () => {
   return (
-    <section id="contact" className="py-24 md:py-32 bg-neutral-950 text-white relative border-t border-white/5">
+    <section id="contact" className="py-24 md:py-32 bg-neutral-950 text-white relative">
       <div className="max-w-[94%] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20">
         <Reveal className="space-y-8">
+          <span className="font-mono text-[10px] tracking-[0.35em] uppercase text-white/40 block">
+            Index — Contact
+          </span>
           <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none uppercase">
             Let's create <br />
             <span className="text-neutral-600">together?</span>
@@ -14,9 +17,6 @@ export const Contact: React.FC = () => {
           <p className="text-xl text-neutral-400 font-light max-w-md leading-relaxed">
             Ready to lead your next global project from Miami or São Paulo.
           </p>
-          <div className="pt-8">
-            <div className="w-20 h-px bg-white/10"></div>
-          </div>
         </Reveal>
 
         <Reveal delay={120} className="flex flex-col justify-center space-y-6">

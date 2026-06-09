@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SPM Creative Company | Miami & São Paulo Global Production</title>
     <meta name="description" content="Official website of SPM Creative Company USA. A global production powerhouse bridging Miami and São Paulo. Strategy, Sound Design, and Cinematic Visuals.">
+    <link rel="canonical" href="https://spmcreativecompany.com/">
 
     <!-- Open Graph / LinkedIn / Social -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.spmcreativecompany.com">
+    <meta property="og:url" content="https://spmcreativecompany.com/">
     <meta property="og:title" content="SPM Creative Company | Miami & São Paulo Global Production">
     <meta property="og:description" content="Creative intelligence company. Music production, audiovisual content, and brand storytelling — bridging Miami and São Paulo for the global market.">
-    <meta property="og:image" content="https://www.spmcreativecompany.com/og-image.png">
+    <meta property="og:image" content="https://spmcreativecompany.com/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -19,7 +20,31 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="SPM Creative Company | Miami & São Paulo Global Production">
     <meta name="twitter:description" content="Creative intelligence company. Music production, audiovisual content, and brand storytelling — bridging Miami and São Paulo for the global market.">
-    <meta name="twitter:image" content="https://www.spmcreativecompany.com/og-image.png">
+    <meta name="twitter:image" content="https://spmcreativecompany.com/og-image.png">
+
+    <!-- Structured data: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SPM Creative Company",
+      "alternateName": "SPM Creative Company USA LLC",
+      "url": "https://spmcreativecompany.com",
+      "image": "https://spmcreativecompany.com/og-image.png",
+      "logo": "https://spmcreativecompany.com/og-image.png",
+      "description": "Creative company bridging Miami and São Paulo. Artistic direction, sonic architecture, production and audiovisual for artists, brands and institutions on the global stage.",
+      "email": "contact@spmcreativecompany.com",
+      "foundingDate": "2019",
+      "sameAs": [
+        "https://www.instagram.com/spm_usa",
+        "https://www.linkedin.com/company/spm-creative-company-usa"
+      ],
+      "address": [
+        { "@type": "PostalAddress", "addressLocality": "Miami", "addressRegion": "FL", "addressCountry": "US" },
+        { "@type": "PostalAddress", "addressLocality": "São Paulo", "addressCountry": "BR" }
+      ]
+    }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -139,7 +164,14 @@
   <body>
     <div class="noise-overlay"></div>
     <div class="scanline"></div>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Static SEO fallback: read by crawlers, replaced by React on load. -->
+      <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;font-family:'Inter',sans-serif;color:#fff;background:#000;">
+        <h1 style="font-size:clamp(40px,10vw,96px);font-weight:900;letter-spacing:-0.04em;margin:0;text-transform:uppercase;">SPM Creative Company</h1>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.25em;text-transform:uppercase;opacity:0.6;margin-top:16px;">Music · Image · Strategy — Miami &amp; São Paulo</p>
+        <p style="max-width:640px;font-size:18px;font-weight:300;line-height:1.6;opacity:0.8;margin-top:24px;">SPM Creative Company is a creative studio bridging Miami and São Paulo. Artistic direction, sonic architecture, production and audiovisual for artists, brands and institutions on the global stage.</p>
+      </div>
+    </div>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
