@@ -118,6 +118,13 @@ export const ArtistPortal: React.FC = () => {
                 <Send size={14} />
                 {status === 'sending' ? 'Sending…' : 'Send Submission'}
               </button>
+
+              <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-neutral-600 leading-relaxed pt-2">
+                By submitting, you agree to our{' '}
+                <a href="/terms.html" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white border-b border-neutral-700 hover:border-white transition-colors">Terms of Use</a>
+                {' '}and{' '}
+                <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white border-b border-neutral-700 hover:border-white transition-colors">Privacy Policy</a>.
+              </p>
             </form>
           )}
         </Reveal>

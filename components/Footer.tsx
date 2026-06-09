@@ -78,9 +78,11 @@ export const Footer: React.FC = () => {
         <Reveal delay={100}>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-6 font-mono text-[10px] tracking-[0.25em] uppercase text-neutral-600">
             <p>&copy; 2026 SPM Creative Company — All rights reserved.</p>
-            <a href="mailto:contact@spmcreativecompany.com" className="hover:text-white transition-colors">
-              Inquiries
-            </a>
+            <div className="flex flex-wrap gap-8">
+              <a href="/privacy.html" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="/terms.html" className="hover:text-white transition-colors">Terms of Use</a>
+              <a href="mailto:contact@spmcreativecompany.com" className="hover:text-white transition-colors">Inquiries</a>
+            </div>
           </div>
         </Reveal>
 
